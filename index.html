@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Presupuestos</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Generador de Presupuestos</h1>
+        <form id="presupuestoForm">
+            <label for="cliente">Cliente:</label>
+            <input type="text" id="cliente" required>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cantidad</th>
+                        <th>Producto</th>
+                        <th>Precio Unitario</th>
+                        <th>Precio</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody id="productos">
+                    <tr id="productoDiv1">
+                        <td><input type="number" id="cantidad1" min="1" value="1" oninput="validarCantidad(this)" onblur="corregirCantidad(this)"></td>
+                        <td>
+                            <select id="producto1">
+                                <option value="computadora">Computadora</option>
+                                <option value="impresora">Impresora</option>
+                                <option value="router">Router</option>
+                                <option value="CableUTP-6">Cable UTP-6</option>
+                                <option value="monitor">Monitor</option>
+                            
+                            </select>
+                        </td>
+                        <td><input type="text" id="precio1" value="0.00" oninput="validarPrecio(this)" onblur="corregirPrecio(this)"></td>
+                        <td><span id="subtotal1">0.00</span></td>
+                        <td><button type="button" class="remove-btn" onclick="eliminarProducto(1)">X</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button id="agregarProductoBtn" type="button" onclick="agregarProducto()">Agregar Producto</button>
+
+            <div class="totals">
+                <div>
+                    <p>Valor de Cuota Ahora 12 - Sin Interés: $<span id="ahora12">0.00</span></p>
+                    <p>Valor Ahora 18 - 75% de Interés: $<span id="ahora18">0.00</span></p>
+                </div>
+                <div>
+                    <p>Subtotal: $<span id="totalSinIva">0.00</span></p>
+                    <p>IVA (21%): $<span id="iva">0.00</span></p>
+                    <p>Total: $<span id="totalConIva">0.00</span></p>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" onclick="calcularPresupuesto()">Calcular Total</button>
+                <button type="button" onclick="imprimirPresupuesto()">Imprimir Presupuesto</button>
+                <button onclick="generarPDF()">Generar PDF</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+    <script src="script.js">
+
+    </script>
+</body>
+</html>
